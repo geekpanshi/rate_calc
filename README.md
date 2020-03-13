@@ -29,7 +29,7 @@
 
 #### 例子
 >
-> [2 万元分 12 期，月还 2266.67，计算链接](https://onlinegdb.com/ryrfrgtS8)
+> [2 万元分 12 期，月还 2266.67，计算链接](https://onlinegdb.com/ry58iHKH8)
 
 ##### 计算结果
 >

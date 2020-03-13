@@ -51,7 +51,7 @@ def cal_annual_rate(total_money, total_month, per_month_money):
 
 
     print("\n\n{:^70}\n\n\n贷款总额为 {}, 总分 {} 期, 每期还款 {} 元，利息如下：\n".format("信用卡分期利息计算", total_money, total_month, per_month_money))
-    print("实际月利息 = {}%, 实际年利率 = {}%\n".format(per_month_rate * 100, year_rate * 100))
+    print("实际月利息 = {}%, 名义年利率 = {}%，实际年利率 = {}%\n".format(r(per_month_rate * 100), r(12 * per_month_rate * 100), r(year_rate * 100)))
     print("每月月供为 = {:.2f}, 总利息 = {:.2f}\n".format(r(t_per_month_money), r(t_total_rate_money)))
 
 
