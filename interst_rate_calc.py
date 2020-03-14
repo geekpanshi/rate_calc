@@ -18,6 +18,9 @@ Total_month = 12
 # 3. 您的每期还款额
 Per_month_money = 2266.67
 
+# 4. 一次性手续费，单位 %
+Once_rate = 0
+
 '''
     以下为代码部分，请勿动，只需要填写上面三个数值即可
 '''
@@ -27,21 +30,22 @@ import numpy as np
 def r(real_money, n = 2):
     return round(real_money, n)
 
-def cal_annual_rate(total_money, total_month, per_month_money):
+def cal_annual_rate(total_money, total_month, per_month_money, once_rate):
     #
     # total_money      总计借款数量
     # per_month_money  每期还款额度
     # total_month      总共分期期数
 
+    total_money -= (total_money * once_rate / 100)
     load_infos = [-total_money]
     for month_index in range(total_month):
         load_infos.append(per_month_money)
 
     # 计算内部收益率
-    per_month_rate = r(np.irr(load_infos), 5)
+    per_month_rate = np.irr(load_infos)
 
     # 计算年化收益率（复利公式）
-    year_rate = r((per_month_rate + 1) ** 12 - 1, 4)
+    year_rate = (per_month_rate + 1) ** 12 - 1
 
     #月均还款(本金+利息)
     t_per_month_money = total_money * per_month_rate * pow((1 + per_month_rate), total_month)/(pow((1 + per_month_rate), total_month) - 1)
@@ -86,4 +90,5 @@ def cal_annual_rate(total_money, total_month, per_month_money):
     print("\n等额本金还款，总利息 = {:.2f}, 比等额本息少 {:.2f}\n".format(r(t_total_rate_money_2), r(t_total_rate_money - t_total_rate_money_2)))
 
 if __name__ == "__main__":
-    cal_annual_rate(Total_money,  Total_month, Per_month_money)
+    cal_annual_rate(Total_money,  Total_month, Per_month_money, Once_rate)
+
