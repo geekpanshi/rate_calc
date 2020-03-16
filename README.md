@@ -53,7 +53,7 @@
 >> Once_rate_1 = 0
 
 ##### 2. Type = 2 ：[已知 月利息 和 每月服务费](https://onlinegdb.com/Hyujf6hBU)
-> 2.1 每月的利息，单位 %，
+> 2.1 每月的利息，单位 %
 >>
 >> Per_month_rate_2 = 0.5
 >
@@ -62,10 +62,28 @@
 >> Per_month_other_2 = 0.1
 
 ##### 3. Type = 3 ：[已知 月利息 和 总服务费](https://onlinegdb.com/rJ7AzanH8)
-> 3.1 每月的利息，单位 %，
+> 3.1 每月的利息，单位 %
 >>
 >> Per_month_rate_3 = 0.5
 >
 > 3.2 服务费总额
 >>
 >> Per_month_other_3 = 20000
+
+
+
+##### 4. Type = 5 ：[已知 日息 和 每月等额，万 3.5 的利息](https://onlinegdb.com/BkLUc1TBL)
+> 4.1 每日利息，万分之 3.5，
+>>
+>> Per_day_rate_1 = 3.5
+
+
+##### 5. Type = 5 ：[已知 日息 和 先息后本，万 3.5 的利息](https://onlinegdb.com/Sy6PqypSU)
+> 5.1 每日利息，万分之 3.5
+>>
+>> Per_day_rate_2 = 3.5
+
+
+
+
+
