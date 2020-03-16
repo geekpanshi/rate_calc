@@ -70,13 +70,10 @@
 >>
 >> Per_month_other_3 = 20000
 
-
-
-##### 4. Type = 5 ：[已知 日息 和 每月等额，万 3.5 的利息](https://onlinegdb.com/BkLUc1TBL)
+##### 4. Type = 4 ：[已知 日息 和 每月等额，万 3.5 的利息](https://onlinegdb.com/BkLUc1TBL)
 > 4.1 每日利息，万分之 3.5，
 >>
 >> Per_day_rate_1 = 3.5
-
 
 ##### 5. Type = 5 ：[已知 日息 和 先息后本，万 3.5 的利息](https://onlinegdb.com/Sy6PqypSU)
 > 5.1 每日利息，万分之 3.5
