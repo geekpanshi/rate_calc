@@ -5,7 +5,7 @@
 # Github：https://github.com/geekpanshi/rate_calc
 
 '''
-    根据你的 贷款总额、分期数、还款期数 和 一次性百分比手续费，计算年化利率
+    根据你的 贷款总额、分期数 等信息，计算年化利率
 '''
 
 # 请填写以下三个值
@@ -16,11 +16,33 @@ Total_money = 20000
 # 2. 您的总分期数
 Total_month = 12
 
-# 3. 您的每期还款额
-Per_month_money = 2266.67
+##### 请设置你要还款的方式
+'''
+    Type = 1 ：已知 每期还款现金 和 一次性手续费百分比
+    Type = 2 ：已知 月利息       和 每月服务费
+    Type = 3 ：已知 月利息       和 总服务费
+'''
+Type = 1
 
-# 4. 一次性手续费，单位 %
-Once_rate = 0
+#### 1. Type = 1：已知 每期还款现金 和 一次性手续费百分比
+# 1.1 您的每期还款额
+Per_month_money_1 = 2266.67
+# 1.2 一次性手续费，单位 %
+Once_rate_1 = 0
+
+#### 2. Type = 2 ：已知 月利息 和 每月服务费
+# 2.1 每月的利息，单位 %，
+Per_month_rate_2 = 0.5
+# 2.2 每月的服务费，单位 %
+Per_month_other_2 = 0.1
+
+#### 3. Type = 3 ：已知 月利息 和 总服务费
+# 3. 每月的利息，单位 %，
+Per_month_rate_3 = 0.5
+
+# 4. 服务费总额
+Per_month_other_3 = 20000
+
 
 '''
     以下为代码部分，请勿动，只需要填写上面三个数值即可
@@ -31,7 +53,17 @@ import numpy as np
 def r(real_money, n = 2):
     return round(real_money, n)
 
-def cal_annual_rate(total_money, total_month, per_month_money, once_rate):
+
+def cal_annual_rate_2(total_money, total_month, per_month_rate, per_month_other = 0.0):
+    per_month_money = total_money / 12.0   + total_money * (per_month_rate + per_month_other) / 100.0
+    cal_annual_rate(total_money, total_month, per_month_money)
+
+def cal_annual_rate_3(total_money, total_month, per_month_rate, per_month_other = 0.0):
+    real_money = total_money - per_month_other
+    per_month_money = total_money / 12.0 + total_money * per_month_rate / 100.000
+    cal_annual_rate(real_money, total_month, per_month_money)
+
+def cal_annual_rate(total_money, total_month, per_month_money, once_rate = 0):
     #
     # total_money      总计借款数量
     # per_month_money  每期还款额度
@@ -91,5 +123,9 @@ def cal_annual_rate(total_money, total_month, per_month_money, once_rate):
     print("\n等额本金还款，总利息 = {:.2f}, 比等额本息少 {:.2f}\n".format(r(t_total_rate_money_2), r(t_total_rate_money - t_total_rate_money_2)))
 
 if __name__ == "__main__":
-    cal_annual_rate(Total_money,  Total_month, Per_month_money, Once_rate)
-
+    if Type == 2:
+        cal_annual_rate_2(Total_money, Total_month, Per_month_rate_2, Per_month_other_2)
+    elif Type == 3:
+        cal_annual_rate_3(Total_money, Total_month, Per_month_rate_3, Per_month_other_3)
+    else:
+        cal_annual_rate(Total_money,  Total_month, Per_month_money_1, Once_rate_1)
