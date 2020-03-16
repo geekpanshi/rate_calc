@@ -9,7 +9,7 @@
 #### [Type = 1](https://github.com/geekpanshi/rate_calc#1-type--1%E5%B7%B2%E7%9F%A5-%E6%AF%8F%E6%9C%9F%E8%BF%98%E6%AC%BE%E7%8E%B0%E9%87%91-%E5%92%8C-%E4%B8%80%E6%AC%A1%E6%80%A7%E6%89%8B%E7%BB%AD%E8%B4%B9%E7%99%BE%E5%88%86%E6%AF%94) ：已知 每期还款现金 和 一次性手续费百分比
 #### [Type = 2](https://github.com/geekpanshi/rate_calc#2-type--2-%E5%B7%B2%E7%9F%A5-%E6%9C%88%E5%88%A9%E6%81%AF-%E5%92%8C-%E6%AF%8F%E6%9C%88%E6%9C%8D%E5%8A%A1%E8%B4%B9) ：已知 月利息       和 每月服务费
 #### [Type = 3](https://github.com/geekpanshi/rate_calc#3-type--3-%E5%B7%B2%E7%9F%A5-%E6%9C%88%E5%88%A9%E6%81%AF-%E5%92%8C-%E6%80%BB%E6%9C%8D%E5%8A%A1%E8%B4%B9) ：已知 月利息       和 总服务费
-#### [Type = 4](https://github.com/geekpanshi/rate_calc#4-type--4-%E5%B7%B2%E7%9F%A5-%E6%97%A5%E6%81%AF-%E5%92%8C-%E6%AF%8F%E6%9C%88%E7%AD%89%E9%A2%9D%E4%B8%87-35-%E7%9A%84%E5%88%A9%E6%81%AF) : 已知 日息         和 每月等额还款
+#### [Type = 4](https://github.com/geekpanshi/rate_calc#4-type--4-%E5%B7%B2%E7%9F%A5-%E6%97%A5%E6%81%AF-%E5%92%8C-%E6%AF%8F%E6%9C%88%E7%AD%89%E9%A2%9D%E4%B8%87-35-%E7%9A%84%E5%88%A9%E6%81%AF) ：已知 日息         和 每月等额还款
 #### [Type = 5](https://github.com/geekpanshi/rate_calc#5-type--5-%E5%B7%B2%E7%9F%A5-%E6%97%A5%E6%81%AF-%E5%92%8C-%E5%85%88%E6%81%AF%E5%90%8E%E6%9C%AC%E4%B8%87-35-%E7%9A%84%E5%88%A9%E6%81%AF) ：已知 日息         和 先息后本还款
 
 ### 例子说明
