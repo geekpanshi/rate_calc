@@ -11,7 +11,7 @@
 #### [Type = 3](https://github.com/geekpanshi/rate_calc#3-type--3-%E5%B7%B2%E7%9F%A5-%E6%9C%88%E5%88%A9%E6%81%AF-%E5%92%8C-%E6%80%BB%E6%9C%8D%E5%8A%A1%E8%B4%B9) ：已知 月利息       和 总服务费
 #### [Type = 4](https://github.com/geekpanshi/rate_calc#4-type--4-%E5%B7%B2%E7%9F%A5-%E6%97%A5%E6%81%AF-%E5%92%8C-%E6%AF%8F%E6%9C%88%E7%AD%89%E9%A2%9D%E4%B8%87-35-%E7%9A%84%E5%88%A9%E6%81%AF) ：已知 日息         和 每月等额还款
 #### [Type = 5](https://github.com/geekpanshi/rate_calc#5-type--5-%E5%B7%B2%E7%9F%A5-%E6%97%A5%E6%81%AF-%E5%92%8C-%E5%85%88%E6%81%AF%E5%90%8E%E6%9C%AC%E4%B8%87-35-%E7%9A%84%E5%88%A9%E6%81%AF) ：已知 日息         和 先息后本还款
-
+#### [Type = 6](https://github.com/geekpanshi/rate_calc#6-type--6-%E5%B7%B2%E7%9F%A5-%E6%AF%8F%E6%9C%9F%E8%BF%98%E6%AC%BE%E9%A2%9D%E9%83%BD%E4%B8%8D%E7%9B%B8%E7%AD%89%E6%B1%82%E5%AE%9E%E9%99%85%E7%9A%84%E5%88%A9%E6%81%AF) ：已知 每期还款额都不相等，求实际的利息
 ### 例子说明
 > 以借 20000 元，分 12 期，每个月还款 2266.67 元 ，问年化利率是多少？
 
@@ -106,3 +106,4 @@ All_month_pays = [
     108.50,
     10098.00,
 ]
+```
