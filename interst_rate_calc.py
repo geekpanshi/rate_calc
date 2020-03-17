@@ -8,13 +8,7 @@
     根据你的 贷款总额、分期数 等信息，计算年化利率
 '''
 
-# 请填写以下三个值
-
-# 1. 您的贷款总额
-Total_money = 10000
-
-# 2. 您的总分期数
-Total_month = 12
+# 请填写以下对应的数值
 
 ##### 请设置你要还款的方式
 '''
@@ -25,39 +19,48 @@ Total_month = 12
     Type = 5 ：已知 日息         和 先息后本还款
     Type = 6 ：已知 每期还款额都不相等，求实际的利息
 '''
+
 Type = 6
+
+# 1. 您的贷款总额
+Total_money = 20000
+
+# 2. 您的总分期数
+Total_month = 12
 
 #### 1. Type = 1：已知 每期还款现金 和 一次性手续费百分比
 # 1.1 您的每期还款额
-Per_month_money_1 = 2266.67
+T_1_per_month_money = 2266.67
 # 1.2 一次性手续费，单位 %
-Once_rate_1 = 0
+T_1_once_rate = 0
 
 #### 2. Type = 2 ：已知 月利息 和 每月服务费
 # 2.1 每月的利息，单位 %，
-Per_month_rate_2 = 0.5
+T_2_per_month_rate = 0.5
 # 2.2 每月的服务费，单位 %
-Per_month_other_2 = 0.1
+T_2_per_month_other = 0.1
 
 #### 3. Type = 3 ：已知 月利息 和 总服务费
-# 3. 每月的利息，单位 %，
-Per_month_rate_3 = 0.5
-
-# 4. 服务费总额
-Per_month_other_3 = 20000
+# 3.1 每月的利息，单位 %，
+T_3_per_month_rate = 0.5
+# 3.2 服务费总额
+T_3_per_month_other = 2000
 
 #### 4. Type = 4 ：已知 日息 和 每月等额，万 3.5 的利息
-Per_day_rate_1 = 3.5
+# 日利息 万分之 N
+T_4_per_day_rate = 3.5
 
-#### 5. Type = 4 ：已知 日息 和 先息后本，万 3.5 的利息
-Per_day_rate_2 = 3.5
+#### 5. Type = 5 ：已知 日息 和 先息后本，万 3.5 的利息
+# 日利息 万分之 N
+T_5_per_day_rate = 3.5
 
 #### 6. Type = 6 ：已知 每期还款额都不相等，求实际的利息
-All_month_pays = [
-    67.20,
-    84.00,
-    86.80,
-    105.00,
+# 每期还款额列表
+T_6_all_month_pays = [
+    167.20,
+    184.00,
+    186.80,
+    205.00,
     108.50,
     108.50,
     105.00,
@@ -65,7 +68,7 @@ All_month_pays = [
     105.00,
     108.50,
     108.50,
-    10098.00,
+    20098.00,
 ]
 
 '''
@@ -79,15 +82,15 @@ def r(real_money, n = 2):
 
 def cal_annual_rate_2(total_money, total_month, per_month_rate, per_month_other = 0.0):
     per_month_money = total_money / 12.0   + total_money * (per_month_rate + per_month_other) / 100.0
-    cal_annual_rate(total_money, total_month, per_month_money)
+    cal_annual_rate_1(total_money, total_month, per_month_money)
 
 def cal_annual_rate_3(total_money, total_month, per_month_rate, per_month_other = 0.0):
     real_money = total_money - per_month_other
     per_month_money = total_money / 12.0 + total_money * per_month_rate / 100.000
-    cal_annual_rate(real_money, total_month, per_month_money)
+    cal_annual_rate_1(real_money, total_month, per_month_money)
 
 def cal_annual_rate_4(total_money, total_month, per_day_rate_1, per_month_other = 0.0):
-    cal_annual_rate(total_money, total_month, 0, per_month_other, per_day_rate_1)
+    cal_annual_rate_1(total_money, total_month, 0, per_month_other, per_day_rate_1)
 
 def cal_annual_rate_5(total_money, total_month, per_day_rate):
     # total_money      总计借款数量
@@ -148,7 +151,7 @@ def cal_annual_rate_6(total_money, total_month, all_month_pays):
         print("第 {:-2d} 个月应还利息为 {:8.02f}, 应还本金为 {:8.02f}, 还款总额为 {:8.02f}，剩余欠款 {:8.02f} ".format(month_idx, pay_money, base_money, base_money + pay_money, abs(r(remain_money))))
 
 
-def cal_annual_rate(total_money, total_month, per_month_money, once_rate = 0, per_day_rate = 0):
+def cal_annual_rate_1(total_money, total_month, per_month_money, once_rate = 0, per_day_rate = 0):
     #
     # total_money      总计借款数量
     # per_month_money  每期还款额度
@@ -211,14 +214,14 @@ def cal_annual_rate(total_money, total_month, per_month_money, once_rate = 0, pe
 
 if __name__ == "__main__":
     if Type == 2:
-        cal_annual_rate_2(Total_money, Total_month, Per_month_rate_2, Per_month_other_2)
+        cal_annual_rate_2(Total_money, Total_month, T_2_per_month_rate, T_2_per_month_other)
     elif Type == 3:
-        cal_annual_rate_3(Total_money, Total_month, Per_month_rate_3, Per_month_other_3)
+        cal_annual_rate_3(Total_money, Total_month, T_3_per_month_rate, T_3_per_month_other)
     elif Type == 4:
-        cal_annual_rate_4(Total_money, Total_month, Per_day_rate_1, 0)
+        cal_annual_rate_4(Total_money, Total_month, T_4_per_day_rate, 0)
     elif Type == 5:
-        cal_annual_rate_5(Total_money, Total_month, Per_day_rate_2)
+        cal_annual_rate_5(Total_money, Total_month, T_5_per_day_rate)
     elif Type == 6:
-        cal_annual_rate_6(Total_money, Total_month, All_month_pays)
+        cal_annual_rate_6(Total_money, Total_month, T_6_all_month_pays)
     else:
-        cal_annual_rate(Total_money,  Total_month, Per_month_money_1, Once_rate_1)
+        cal_annual_rate_1(Total_money, Total_month, T_1_per_month_money, T_1_once_rate)
