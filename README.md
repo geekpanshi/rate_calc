@@ -46,54 +46,38 @@
 #### Python 脚本其他说明：
 > 可以根据你的 贷款总额、分期数 等信息，计算年化利率
 >
->> 1. 您的贷款总额 `Total_money = 20000`
->> 2. 您的总分期数 `Total_month = 12`
+>> 1. 您的贷款总额：`Total_money = 20000`
+>> 2. 您的总分期数：`Total_month = 12`
 >
 > 可以根据 类型参数 Type 选择不同的情况计算利息
 
 ##### 1. Type = 1：[已知 每期还款现金 和 一次性手续费百分比](https://onlinegdb.com/BkvybphrU)
-> 1.1 您的每期还款额
->>
->> `Per_month_money_1 = 2266.67`
->>
-> 1.2 一次性手续费，单位 %
->>
->> `Once_rate_1 = 0`
+> 1.1 您的每期还款额：`Per_month_money_1 = 2266.67`
+>
+> 1.2 一次性手续费，单位 %：`Once_rate_1 = 0`
 
 ##### 2. Type = 2 ：[已知 月利息 和 每月服务费](https://onlinegdb.com/Hyujf6hBU)
-> 2.1 每月的利息，单位 %
->>
->> `Per_month_rate_2 = 0.5`
+> 2.1 每月的利息，单位 %：`Per_month_rate_2 = 0.5`
 >
-> 2.2 每月的服务费，单位 %
->>
->> `Per_month_other_2 = 0.1`
+> 2.2 每月的服务费，单位 %：`Per_month_other_2 = 0.1`
 
 ##### 3. Type = 3 ：[已知 月利息 和 总服务费](https://onlinegdb.com/rJ7AzanH8)
-> 3.1 每月的利息，单位 %
->>
->> `Per_month_rate_3 = 0.5`
+> 3.1 每月的利息，单位 %： `Per_month_rate_3 = 0.5`
 >
-> 3.2 服务费总额
->>
->> `Per_month_other_3 = 20000`
+> 3.2 服务费总额：`Per_month_other_3 = 20000`
 
 ##### 4. Type = 4 ：[已知 日息 和 每月等额，万 3.5 的利息](https://onlinegdb.com/BkLUc1TBL)
-> 4.1 每日利息，万分之 3.5，
->>
->> `Per_day_rate_1 = 3.5`
+> 4.1 每日利息，万分之 3.5：`Per_day_rate_1 = 3.5`
 
 ##### 5. Type = 5 ：[已知 日息 和 先息后本，万 3.5 的利息](https://onlinegdb.com/Sy6PqypSU)
-> 5.1 每日利息，万分之 3.5
->>
->> `Per_day_rate_2 = 3.5`
+> 5.1 每日利息，万分之 3.5：`Per_day_rate_2 = 3.5`
 
 
 ##### 6. Type = 6 ：[已知 每期还款额都不相等，求实际的利息](https://onlinegdb.com/SyR0gh6S8)
 > 6.1 每期还款的按顺序的列表
 ```python
 All_month_pays = [
-   67.20,
+    67.20,
     84.00,
     86.80,
     105.00,
