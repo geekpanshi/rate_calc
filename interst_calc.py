@@ -21,7 +21,7 @@
     Type = 5 ：已知 贷款利息、贷款周期、贷款额，算等额本息/等额本金月供
 
 '''
-Type = 1
+Type = 5
 
 #### 1. Type = 1 ：已知 存款额、存款期限 和 年化，算利息
 # 1.1 您的贷款总额
@@ -148,7 +148,6 @@ def cal_annual_rate_4(year_rate, total_years, per_save, time_interval, last_tota
     print("\n\n{:^70}\n\n".format("定投首次存款计算器"))
     print("年利率是 {}%，然后每 {} 个月都会存 {} ，那么 {} 年后能拿到 {}，则初期需要投入 {} ".format(year_rate, time_interval, per_save, total_years, last_total_money, r(-result)))
 
-
 def cal_annual_rate_5(year_rate, total_years, total_money):
     '''
     def pmt(rate, nper, pv, fv=0, when='end'):
@@ -159,7 +158,7 @@ def cal_annual_rate_5(year_rate, total_years, total_money):
         pv   ：存款/贷款金额
     '''
 
-    total_month = total_years * 12
+    total_month = int(total_years * 12)
 
 
     result = np.pmt(year_rate / 12 / 100, total_month, total_money)
@@ -168,12 +167,9 @@ def cal_annual_rate_5(year_rate, total_years, total_money):
     for month_index in range(total_month):
         load_infos.append(-result)
 
-
-
     per_month_rate = np.irr(load_infos)
 
     t_total_rate_money = total_month * total_money * per_month_rate * pow((1 + per_month_rate), total_month)/(pow(1 + per_month_rate, total_month) - 1) - total_money
-
 
     per_base_money = total_money / total_month
 
@@ -185,12 +181,19 @@ def cal_annual_rate_5(year_rate, total_years, total_money):
         cur_interest = (total_money - per_base_money *(cur_month - 1)) * per_month_rate #每月应还利息
         t_total_rate_money_2 += cur_interest
 
+    t_total_rate_money_3 = total_money * year_rate / 100.00 * total_years
+    per_month_i = t_total_rate_money_3/total_month * 1.0
 
-    print("\n\n{:^70}\n\n\n贷款总额为 {}, 总分 {} 期, 年化利息 {}%，利息及月供如下：\n".format("分期月供计算器", total_money, total_month, r(year_rate)))
-    print("等额本息：利息总和 {}，月供 {}".format(r(t_total_rate_money), r(-result)))
-    print("\n等额本金：利息总和 {}，首月 {}，最后一个月 {}，".format(r(t_total_rate_money_2), r(first_total), r(last_total)))
-    print("\n等额本金 比 等额本息 总计少付利息：{}".format(r(r(t_total_rate_money) - r(t_total_rate_money_2))))
+    print("\n\n{:^70}\n\n\n贷款总额为 {}, 总分 {} 期, 年化利息 {}%，利息及月供如下：".format("分期月供计算器", total_money, total_month, r(year_rate)))
+    print("\n1. 等额本息：利息总和 {:.2f}，月供 {}；".format(r(t_total_rate_money), r(-result)))
+    print("\n2. 先息后本：利息总和 {:.2f}，第 1 - {} 月月供 {}, 最后一个月月供 {}；".format(r(t_total_rate_money_3), total_month - 1, r(per_month_i), r(per_month_i + total_money)))
+    print("\n3. 等额本金：利息总和 {:.2f}，首月 {}，最后一个月 {}；".format(r(t_total_rate_money_2), r(first_total), r(last_total)))
 
+    print("\n利息比较：\n\t等额本金 比 等额本息 总计少付利息：{:.2f}；\n\t等额本金 比 先息后本 总计少付利息：{:.2f}；\n\t等额本息 比 先息后本 总计少付利息：{:.2f}。".format(
+        r(r(t_total_rate_money)   - r(t_total_rate_money_2)),
+        r(r(t_total_rate_money_3) - r(t_total_rate_money_2)),
+        r(r(t_total_rate_money_3) - r(t_total_rate_money))
+        ))
 
 def cal_annual_rate_1(total_money,  total_years, year_rate):
     #
