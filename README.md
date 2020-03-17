@@ -91,7 +91,7 @@
 
 ##### 6. Type = 6 ：[已知 每期还款额都不相等，求实际的利息](https://onlinegdb.com/SyR0gh6S8)
 > 6.1 每期还款的按顺序的列表
-> ```python
+```python
 All_month_pays = [
    67.20,
     84.00,
