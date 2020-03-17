@@ -11,7 +11,7 @@
 # 请填写以下三个值
 
 # 1. 您的贷款总额
-Total_money = 100000
+Total_money = 10000
 
 # 2. 您的总分期数
 Total_month = 12
@@ -23,8 +23,9 @@ Total_month = 12
     Type = 3 ：已知 月利息       和 总服务费
     Type = 4 : 已知 日息         和 每月等额还款
     Type = 5 ：已知 日息         和 先息后本还款
+    Type = 6 ：已知 每期还款额都不相等，求实际的利息
 '''
-Type = 1
+Type = 6
 
 #### 1. Type = 1：已知 每期还款现金 和 一次性手续费百分比
 # 1.1 您的每期还款额
@@ -50,6 +51,22 @@ Per_day_rate_1 = 3.5
 
 #### 5. Type = 4 ：已知 日息 和 先息后本，万 3.5 的利息
 Per_day_rate_2 = 3.5
+
+#### 6. Type = 6 ：已知 每期还款额都不相等，求实际的利息
+All_month_pays = [
+    67.20,
+    84.00,
+    86.80,
+    105.00,
+    108.50,
+    108.50,
+    105.00,
+    108.50,
+    105.00,
+    108.50,
+    108.50,
+    10098.00,
+]
 
 '''
     以下为代码部分，请勿动，只需要填写上面三个数值即可
@@ -88,9 +105,48 @@ def cal_annual_rate_5(total_money, total_month, per_day_rate):
     #还款利息总和
     t_total_rate_money = (per_day_rate / 10000.0 * total_money) * 365.0
 
-    print("\n\n{:^70}\n\n\n贷款总额：{}, 总分 {} 期, 日息 万分之{}，还款方式：先息后本:\n".format("信用卡分期利息计算", total_money, total_month, per_day_rate))
+    print("\n\n{:^70}\n\n\n贷款总额：{}, 总分 {} 期, 日息 万分之{}，还款方式：先息后本：\n".format("信用卡分期利息计算", total_money, total_month, per_day_rate))
     print("利息如下：实际月利息 = {}%, 名义年利率 = {}%，实际年利率 = {}%\n".format(r(per_month_rate * 100), r(12 * per_month_rate * 100), r(year_rate * 100)))
     print("还款细节：每 1 - {} 月月供为 {:.2f}, 第 {} 个月月供为 {}， 总利息 {:.2f}\n".format(total_month - 1, r(month_rates), total_month,  r(total_money +  month_rates), r(month_rates) * 12.0))
+
+def cal_annual_rate_6(total_money, total_month, all_month_pays):
+    # total_money      总计借款数量
+    # total_month      总共分期期数
+
+    if len(all_month_pays) != total_month:
+        print("\n\n还款期数 total_month 为 {}，实际还款月数为 all_month_pays 为 {} 个月，两者不相等，请核查下数据".format(total_month, len(all_month_pays)))
+        return
+
+    load_infos = [-total_money]
+    total_rate_money =  0
+    for month_pay in all_month_pays:
+        total_rate_money += month_pay
+        load_infos.append(month_pay)
+
+    per_month_rate = np.irr(load_infos)
+
+    # 计算年化收益率（复利公式）
+    year_rate = (per_month_rate + 1) ** 12 - 1
+
+    #还款利息总和
+    t_total_rate_money = total_rate_money - total_money
+
+    print("\n\n{:^70}\n\n\n贷款总额：{}, 总分 {} 期：\n".format("信用卡分期利息计算", total_money, total_month))
+    print("利息如下：实际月利息 = {}%, 名义年利率 = {}%，实际年利率 = {}%\n".format(r(per_month_rate * 100), r(12 * per_month_rate * 100), r(year_rate * 100)))
+    print("总利息 {:.2f}，还款细节：\n".format(t_total_rate_money))
+
+    for month_idx in range(1, total_month + 1):
+        if all_month_pays[month_idx - 1] > total_money:
+            base_money = total_money
+            pay_money = all_month_pays[month_idx - 1] - total_money
+            remain_money = 0
+        else:
+            base_money = 0
+            pay_money = all_month_pays[month_idx - 1]
+            remain_money = total_money
+
+        print("第 {:-2d} 个月应还利息为 {:8.02f}, 应还本金为 {:8.02f}, 还款总额为 {:8.02f}，剩余欠款 {:8.02f} ".format(month_idx, pay_money, base_money, base_money + pay_money, abs(r(remain_money))))
+
 
 def cal_annual_rate(total_money, total_month, per_month_money, once_rate = 0, per_day_rate = 0):
     #
@@ -162,5 +218,7 @@ if __name__ == "__main__":
         cal_annual_rate_4(Total_money, Total_month, Per_day_rate_1, 0)
     elif Type == 5:
         cal_annual_rate_5(Total_money, Total_month, Per_day_rate_2)
+    elif Type == 6:
+        cal_annual_rate_6(Total_money, Total_month, All_month_pays)
     else:
         cal_annual_rate(Total_money,  Total_month, Per_month_money_1, Once_rate_1)
