@@ -161,7 +161,7 @@ T_6_all_month_pays = [
 > 4.5 最终本息总和：`T_4_last_total_money = 1376.10`
 
 
-#### 5. Type = 5 ：[已知 贷款利息、贷款周期、贷款额，算等额本息/等额本金月供](https://onlinegdb.com/ByckyXCrI)
+#### 5. Type = 5 ：[已知 贷款利息、贷款周期、贷款额，算等额本息/等额本金月供](https://onlinegdb.com/Hk9rQMXU8)
 > 5.1 年化利率：`T_5_year_rate = 4.66`
 >
 > 5.2 存款期限，单位年：`T_5_total_years = 20`
