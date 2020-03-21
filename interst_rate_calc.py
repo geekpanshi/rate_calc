@@ -96,7 +96,7 @@ def cal_annual_rate_5(total_money, total_month, per_day_rate):
     # total_money      总计借款数量
     # total_month      总共分期期数
     load_infos = [-total_money]
-    month_rates = (per_day_rate / 10000.0 * total_money) * 365.0 / 12.0
+    month_rates = (per_day_rate / 10000.0 * total_money) * 360.0 / 12.0
     for month_index in range(total_month - 1):
         load_infos.append(month_rates)
     load_infos.append(month_rates + total_money)
@@ -106,7 +106,7 @@ def cal_annual_rate_5(total_money, total_month, per_day_rate):
     year_rate = (per_month_rate + 1) ** 12 - 1
 
     #还款利息总和
-    t_total_rate_money = (per_day_rate / 10000.0 * total_money) * 365.0
+    t_total_rate_money = (per_day_rate / 10000.0 * total_money) * 360.0
 
     print("\n\n{:^70}\n\n\n贷款总额：{}, 总分 {} 期, 日息 万分之{}，还款方式：先息后本：\n".format("信用卡分期利息计算", total_money, total_month, per_day_rate))
     print("利息如下：实际月利息 = {}%, 名义年利率 = {}%，实际年利率 = {}%\n".format(r(per_month_rate * 100), r(12 * per_month_rate * 100), r(year_rate * 100)))
@@ -165,7 +165,7 @@ def cal_annual_rate_1(total_money, total_month, per_month_money, once_rate = 0, 
         # 计算内部收益率
         per_month_rate = np.irr(load_infos)
     else:
-        per_month_rate = per_day_rate * 365.0 / 12.0 / 10000.0
+        per_month_rate = per_day_rate * 360.0 / 12.0 / 10000.0
 
     # 计算年化收益率（复利公式）
     year_rate = (per_month_rate + 1) ** 12 - 1

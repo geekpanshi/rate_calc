@@ -8,6 +8,8 @@
     根据你的 存款额度、年利息、存款期限，计算利息
 
     复利计算器是在上一年度利息的收益加到下一年的本金来计算的。
+
+    年利率 = 月利息 * 12 = 日利息 * 360
 '''
 
 # 请填写以下一些值
@@ -87,11 +89,11 @@ T_4_last_total_money = 1376.10
 
 #### 5. Type = 5 ：已知 贷款利息、贷款周期、贷款额，算月供
 # 5.1 年化利率
-T_5_year_rate = 4.66
+T_5_year_rate = 4.35
 # 5.2 存款期限，单位年
-T_5_total_years = 20
+T_5_total_years = 1
 # 5.3 贷款总额
-T_5_total_money = 434000
+T_5_total_money = 300000
 
 import numpy as np
 
@@ -148,6 +150,7 @@ def cal_annual_rate_4(year_rate, total_years, per_save, time_interval, last_tota
     print("\n\n{:^70}\n\n".format("定投首次存款计算器"))
     print("年利率是 {}%，然后每 {} 个月都会存 {} ，那么 {} 年后能拿到 {}，则初期需要投入 {} ".format(year_rate, time_interval, per_save, total_years, last_total_money, r(-result)))
 
+
 def cal_annual_rate_5(year_rate, total_years, total_money):
     '''
     def pmt(rate, nper, pv, fv=0, when='end'):
@@ -169,6 +172,8 @@ def cal_annual_rate_5(year_rate, total_years, total_money):
 
     per_month_rate = np.irr(load_infos)
 
+    real_year_rate = (per_month_rate + 1) ** 12 - 1
+
     t_total_rate_money = total_month * total_money * per_month_rate * pow((1 + per_month_rate), total_month)/(pow(1 + per_month_rate, total_month) - 1) - total_money
 
     per_base_money = total_money / total_month
@@ -184,7 +189,7 @@ def cal_annual_rate_5(year_rate, total_years, total_money):
     t_total_rate_money_3 = total_money * year_rate / 100.00 * total_years
     per_month_i = t_total_rate_money_3/total_month * 1.0
 
-    print("\n\n{:^70}\n\n\n贷款总额为 {}, 总分 {} 期, 年化利息 {}%，利息及月供如下：".format("分期月供计算器", total_money, total_month, r(year_rate)))
+    print("\n\n{:^70}\n\n\n贷款总额为 {}, 总分 {} 期, 利息及月供如下：\n\n名义年化利息 {}%、月利息 {}%、日利息 {}‱，实际年化利率 {}%。".format("分期月供计算器", total_money, total_month, r(year_rate), r(year_rate / 12), r(year_rate / 360 * 100), r(real_year_rate * 100)))
     print("\n1. 等额本息：利息总和 {:.2f}，月供 {}；".format(r(t_total_rate_money), r(-result)))
     print("\n2. 先息后本：利息总和 {:.2f}，第 1 - {} 月月供 {}, 最后一个月月供 {}；".format(r(t_total_rate_money_3), total_month - 1, r(per_month_i), r(per_month_i + total_money)))
     print("\n3. 等额本金：利息总和 {:.2f}，首月 {}，最后一个月 {}；".format(r(t_total_rate_money_2), r(first_total), r(last_total)))
