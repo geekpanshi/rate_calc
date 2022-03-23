@@ -8,21 +8,20 @@
 
 ### 计算几种情况下的实际利率和还款细节举例
 
-#### [Type = 1](https://github.com/geekpanshi/rate_calc#1-type--1%E5%B7%B2%E7%9F%A5-%E6%AF%8F%E6%9C%9F%E8%BF%98%E6%AC%BE%E7%8E%B0%E9%87%91-%E5%92%8C-%E4%B8%80%E6%AC%A1%E6%80%A7%E6%89%8B%E7%BB%AD%E8%B4%B9%E7%99%BE%E5%88%86%E6%AF%94) ：已知 每期还款现金 和 一次性手续费百分比
-#### [Type = 2](https://github.com/geekpanshi/rate_calc#2-type--2-%E5%B7%B2%E7%9F%A5-%E6%9C%88%E5%88%A9%E6%81%AF-%E5%92%8C-%E6%AF%8F%E6%9C%88%E6%9C%8D%E5%8A%A1%E8%B4%B9) ：已知 月利息       和 每月服务费
-#### [Type = 3](https://github.com/geekpanshi/rate_calc#3-type--3-%E5%B7%B2%E7%9F%A5-%E6%9C%88%E5%88%A9%E6%81%AF-%E5%92%8C-%E6%80%BB%E6%9C%8D%E5%8A%A1%E8%B4%B9) ：已知 月利息       和 总服务费
-#### [Type = 4](https://github.com/geekpanshi/rate_calc#4-type--4-%E5%B7%B2%E7%9F%A5-%E6%97%A5%E6%81%AF-%E5%92%8C-%E6%AF%8F%E6%9C%88%E7%AD%89%E9%A2%9D%E4%B8%87-35-%E7%9A%84%E5%88%A9%E6%81%AF) ：已知 日息         和 每月等额还款
-#### [Type = 5](https://github.com/geekpanshi/rate_calc#5-type--5-%E5%B7%B2%E7%9F%A5-%E6%97%A5%E6%81%AF-%E5%92%8C-%E5%85%88%E6%81%AF%E5%90%8E%E6%9C%AC%E4%B8%87-35-%E7%9A%84%E5%88%A9%E6%81%AF) ：已知 日息         和 先息后本还款
-#### [Type = 6](https://github.com/geekpanshi/rate_calc#6-type--6-%E5%B7%B2%E7%9F%A5-%E6%AF%8F%E6%9C%9F%E8%BF%98%E6%AC%BE%E9%A2%9D%E9%83%BD%E4%B8%8D%E7%9B%B8%E7%AD%89%E6%B1%82%E5%AE%9E%E9%99%85%E7%9A%84%E5%88%A9%E6%81%AF) ：已知 每期还款额都不相等，求实际的利息
-
+#### [Type = 1](#1-type--1已知-每期还款现金-和-一次性手续费百分比) ：已知 每期还款现金 和 一次性手续费百分比
+#### [Type = 2](#2-type--2-已知-月利息-和-每月服务费) ：已知 月利息       和 每月服务费
+#### [Type = 3](#3-type--3-已知-月利息-和-总服务费) ：已知 月利息       和 总服务费
+#### [Type = 4](#4-type--4-已知-日息-和-每月等额万-35-的利息) ：已知 日息         和 每月等额还款
+#### [Type = 5](#5-type--5-已知-日息-和-先息后本万-35-的利息) ：已知 日息         和 先息后本还款
+#### [Type = 6](#6-type--6-已知-每期还款额都不相等求实际的利息) ：已知 每期还款额都不相等，求实际的利息
 
 ### 计算几种情况下的存款利息和利率情况
 
-#### [Type = 1](https://github.com/geekpanshi/rate_calc#1-type--1-%E5%B7%B2%E7%9F%A5-%E5%AD%98%E6%AC%BE%E9%A2%9D%E5%AD%98%E6%AC%BE%E6%9C%9F%E9%99%90-%E5%92%8C-%E5%B9%B4%E5%8C%96%E7%AE%97%E5%88%A9%E6%81%AF) ：已知 存款额、存款期限 和 年化，算利息。
-#### [Type = 2](https://github.com/geekpanshi/rate_calc#2-type--2-%E5%B7%B2%E7%9F%A5-%E5%88%9D%E6%9C%9F%E5%AD%98%E6%AC%BE%E5%AE%9A%E5%AD%98%E5%91%A8%E6%9C%9F%E5%AE%9A%E5%AD%98%E9%A2%9D%E5%BA%A6-%E5%92%8C-%E5%AD%98%E6%AC%BE%E6%9C%9F%E9%99%90%E7%AE%97%E5%88%A9%E6%81%AF) ：已知 初期存款、定存周期、定存额度 和 存款期限，算利息
-#### [Type = 3](https://github.com/geekpanshi/rate_calc#3-type--3-%E5%B7%B2%E7%9F%A5-%E5%88%9D%E6%9C%9F%E5%AD%98%E6%AC%BE%E5%AE%9A%E5%AD%98%E5%91%A8%E6%9C%9F%E5%AE%9A%E5%AD%98%E9%A2%9D%E5%BA%A6-%E5%92%8C-%E6%9C%80%E7%BB%88%E6%80%BB%E5%92%8C%E7%AE%97%E5%B9%B4%E5%8C%96%E5%88%A9%E7%8E%87) ：已知 初期存款、定存周期、定存额度 和 最终总和，算年化利率
-#### [Type = 4](https://github.com/geekpanshi/rate_calc#4-type--4-%E5%B7%B2%E7%9F%A5-%E5%B9%B4%E5%8C%96%E5%88%A9%E7%8E%87%E5%AE%9A%E5%AD%98%E5%91%A8%E6%9C%9F%E5%AE%9A%E5%AD%98%E9%A2%9D%E5%BA%A6-%E5%92%8C-%E6%9C%80%E7%BB%88%E6%80%BB%E5%92%8C%E7%AE%97%E6%9C%80%E5%88%9D%E9%9C%80%E8%A6%81%E7%9A%84%E6%8A%95%E5%85%A5%E8%B5%84%E9%87%91) ：已知 年化利率、定存周期、定存额度 和 最终总和，算最初需要的投入资金
-#### [Type = 5](https://github.com/geekpanshi/rate_calc#5-type--5-%E5%B7%B2%E7%9F%A5-%E8%B4%B7%E6%AC%BE%E5%88%A9%E6%81%AF%E8%B4%B7%E6%AC%BE%E5%91%A8%E6%9C%9F%E8%B4%B7%E6%AC%BE%E9%A2%9D%E7%AE%97%E7%AD%89%E9%A2%9D%E6%9C%AC%E6%81%AF%E7%AD%89%E9%A2%9D%E6%9C%AC%E9%87%91%E6%9C%88%E4%BE%9B) ：已知 贷款利息、贷款周期、贷款额，算等额本息/等额本金月供
+#### [Type = 1](#1-type--1-已知-存款额存款期限-和-年化算利息) ：已知 存款额、存款期限 和 年化，算利息。
+#### [Type = 2](#2-type--2-已知-初期存款定存周期定存额度-和-存款期限算利息) ：已知 初期存款、定存周期、定存额度 和 存款期限，算利息
+#### [Type = 3](#3-type--3-已知-初期存款定存周期定存额度-和-最终总和算年化利率) ：已知 初期存款、定存周期、定存额度 和 最终总和，算年化利率
+#### [Type = 4](#4-type--4-已知-年化利率定存周期定存额度-和-最终总和算最初需要的投入资金) ：已知 年化利率、定存周期、定存额度 和 最终总和，算最初需要的投入资金
+#### [Type = 5](#5-type--5-已知-贷款利息贷款周期贷款额算等额本息等额本金月供) ：已知 贷款利息、贷款周期、贷款额，算等额本息/等额本金月供
 
 ### 例子说明
 > 以借 20000 元，分 12 期，每个月还款 2266.67 元 ，问年化利率是多少？
